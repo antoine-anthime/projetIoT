@@ -28,7 +28,9 @@ Le projet que nous lancons avec `npm start`est un projet Node, utilisant la libr
  - `./utils/influxworker.js`: fichier permettant de se connecter à la base de données et exporte une fonction pour écrire un **Point** dans Influx.
 
 ## Grafana
+
 ![alt text](https://github.com/antoine-anthime/projetIoT/tree/master/public/grafana.png)
+
 - Sur l'interface configurée, le grand graphique dynamique affiche en temps réel la température envoyée par le **capteur choisi**. (Le choix s'effectue dans la case "sensor code")
 - Le diagramme affiche les données valides et non valides pour les **deux capteurs**.
 - Le graphique dynamique en bas à gauche affiche en temps réel la température envoyée par le **capteur 40**.
