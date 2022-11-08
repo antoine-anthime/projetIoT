@@ -93,12 +93,12 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 7,
-          "w": 24,
+          "h": 8,
+          "w": 12,
           "x": 0,
           "y": 0
         },
-        "id": 4,
+        "id": 8,
         "options": {
           "legend": {
             "calcs": [],
@@ -153,19 +153,171 @@
             "tags": [
               {
                 "key": "machineCode",
-                "operator": "=~",
-                "value": "/^$machineCode$/"
+                "operator": "=",
+                "value": "40"
               },
               {
                 "condition": "AND",
                 "key": "isError",
                 "operator": "=",
                 "value": "false"
+              },
+              {
+                "condition": "AND",
+                "key": "machine",
+                "operator": "=~",
+                "value": "/^$MachineID$/"
               }
             ]
           }
         ],
-        "title": "Temperature of Sensor $machineCode",
+        "title": "Temperature in °C of Sensor $MachineID",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "jjkjvcD4k"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds",
+              "seriesBy": "last"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 7,
+              "gradientMode": "scheme",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "max": 40,
+            "min": 10,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "dark-red",
+                  "value": 37
+                }
+              ]
+            },
+            "unit": "humidity"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "id": 7,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "jjkjvcD4k"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "temperature",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "temperature"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "machineCode",
+                "operator": "=",
+                "value": "50"
+              },
+              {
+                "condition": "AND",
+                "key": "isError",
+                "operator": "=",
+                "value": "false"
+              },
+              {
+                "condition": "AND",
+                "key": "machine",
+                "operator": "=~",
+                "value": "/^$MachineID$/"
+              }
+            ]
+          }
+        ],
+        "title": "Humidity percentage of sensor $MachineID",
         "type": "timeseries"
       },
       {
@@ -193,7 +345,7 @@
           "h": 7,
           "w": 24,
           "x": 0,
-          "y": 7
+          "y": 8
         },
         "id": 6,
         "options": {
@@ -263,292 +415,18 @@
                 "key": "machineCode",
                 "operator": "=",
                 "value": "40"
+              },
+              {
+                "condition": "AND",
+                "key": "machine",
+                "operator": "=~",
+                "value": "/^$MachineID$/"
               }
             ]
           }
         ],
-        "title": "True value / Errored Value",
+        "title": "True value / Errored Value of $MachineID",
         "type": "piechart"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "jjkjvcD4k"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds",
-              "seriesBy": "last"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 7,
-              "gradientMode": "scheme",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "max": 30,
-            "min": 15,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "dark-red",
-                  "value": 27
-                }
-              ]
-            },
-            "unit": "degree"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 0,
-          "y": 14
-        },
-        "id": 8,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "jjkjvcD4k"
-            },
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "previous"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "temperature",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "temperature"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "distinct"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "machineCode",
-                "operator": "=",
-                "value": "40"
-              },
-              {
-                "condition": "AND",
-                "key": "isError",
-                "operator": "=",
-                "value": "false"
-              }
-            ]
-          }
-        ],
-        "title": "Temperature of Sensor 40",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "jjkjvcD4k"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds",
-              "seriesBy": "last"
-            },
-            "custom": {
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "line",
-              "fillOpacity": 7,
-              "gradientMode": "scheme",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "max": 30,
-            "min": 15,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "dark-red",
-                  "value": 27
-                }
-              ]
-            },
-            "unit": "degree"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
-          "y": 14
-        },
-        "id": 7,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "jjkjvcD4k"
-            },
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "previous"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "temperature",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "temperature"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "distinct"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "machineCode",
-                "operator": "=",
-                "value": "50"
-              },
-              {
-                "condition": "AND",
-                "key": "isError",
-                "operator": "=",
-                "value": "false"
-              }
-            ]
-          }
-        ],
-        "title": "Temperature of Sensor 50",
-        "type": "timeseries"
       }
     ],
     "refresh": "5s",
@@ -560,28 +438,28 @@
         {
           "current": {
             "selected": true,
-            "text": "50",
-            "value": "50"
+            "text": "1",
+            "value": "1"
           },
           "description": "The sensor you wish to see data for",
           "hide": 0,
           "includeAll": false,
-          "label": "Sensor Code",
+          "label": "Sensor Identifier",
           "multi": false,
-          "name": "machineCode",
+          "name": "MachineID",
           "options": [
             {
-              "selected": false,
-              "text": "40",
-              "value": "40"
+              "selected": true,
+              "text": "1",
+              "value": "1"
             },
             {
-              "selected": true,
-              "text": "50",
-              "value": "50"
+              "selected": false,
+              "text": "2",
+              "value": "2"
             }
           ],
-          "query": "40, 50",
+          "query": "1,2",
           "queryValue": "",
           "skipUrlSync": false,
           "type": "custom"
@@ -596,6 +474,6 @@
     "timezone": "",
     "title": "Projet IOT",
     "uid": "zvajdcD4k",
-    "version": 12,
+    "version": 18,
     "weekStart": ""
   }
