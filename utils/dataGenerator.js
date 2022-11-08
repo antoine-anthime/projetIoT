@@ -28,13 +28,22 @@ function sendData(data) {
 }
 
 function start() {
+  let code;
 //Decide wether machineCode variable is 40 or 50, one chance out of 2
-const machineCode = Math.random() >= 0.5 ? 40 : 50;
+  const temperatureValue = toByte(randomNumber(TEMP_MIN, TEMP_MAX).toString(16), 2); 
+  const humidityValue = toByte(randomNumber(100, 400).toString(16), 2); code = toByte((50).toString(16), 1);
 
-const value = toByte(randomNumber(TEMP_MIN, TEMP_MAX).toString(16), 2); const code = toByte((machineCode).toString(16), 1);
-const errored = toByte(returnRandomBoolean().toString(16), 1);;  
-const payload = code + value + errored;
-  console.log(payload);
-sendData(payload);
-}
+  const erroredTemperature = toByte(returnRandomBoolean().toString(16), 1);
+  const erroredHumidity = toByte(returnRandomBoolean().toString(16), 1);
+  code = toByte((40).toString(16), 1);
+  const payloadTemperature = code + temperatureValue + erroredTemperature;
+  code = toByte((50).toString(16), 1);
+  const payloadHumidity = code + humidityValue + erroredHumidity;
+  sendData(payloadTemperature)
+  console.log('Log time : ', new Date().toISOString())
+  console.log("Payload Temperature : ", payloadTemperature)
+  sendData(payloadHumidity);
+  console.log("Payload Humidity : ", payloadHumidity)
+  console.log('__________________')
+  }
 setInterval(() => start(), 2000);
