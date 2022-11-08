@@ -29,7 +29,7 @@ Le projet que nous lancons avec `npm start`est un projet Node, utilisant la libr
 
 ## Grafana
 
-![alt text](https://github.com/antoine-anthime/projetIoT/tree/master/public/grafana.png?raw=true)
+![alt text](https://github.com/antoine-anthime/projetIoT/tree/master/public/grafana.png)
 
 - Sur l'interface configurée, le grand graphique dynamique affiche en temps réel la température envoyée par le **capteur choisi**. (Le choix s'effectue dans la case "sensor code")
 - Le diagramme affiche les données valides et non valides pour les **deux capteurs**.
